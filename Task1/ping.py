@@ -1,6 +1,7 @@
 import csv
 import subprocess
 
+
 addresses = [
     "discordapp.com",
     "wikipedia.com",
@@ -13,14 +14,10 @@ addresses = [
     "gmail.com",
     "vk.com",
 ]
+
 with open("ping.csv", "w") as file:
-    dw = csv.DictWriter(
-        file,
-        delimiter=",",
-        fieldnames=["address", "ping (ms)"],
-    )
-    dw.writeheader()
     writer = csv.writer(file)
+    writer.writerow(["address", "ping (ms)"])
     for address in addresses:
         result = subprocess.run(["ping", "-c", "1", address], capture_output=True)
         if result.returncode == 0:
