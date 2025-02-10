@@ -1,6 +1,5 @@
-import subprocess
-
 import csv
+import subprocess
 
 addresses = [
     "discordapp.com",
@@ -29,4 +28,3 @@ with open("ping.csv", "w") as file:
             writer.writerow([address, rtt[rtt.find("time=") + 5 : rtt.find("ms")]])
         else:
             writer.writerow([address, "no connection"])
-    file.close()
