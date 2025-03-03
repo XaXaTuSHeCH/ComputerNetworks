@@ -1,5 +1,6 @@
 Вот так, да, БД запускаю, дон:
 ```
+brew services start mysql 
 mysql -u localuser -h localhost flats_db
 ```
 Вот так потом, да, API точку стартую, дон:
