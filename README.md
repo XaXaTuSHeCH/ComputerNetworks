@@ -15,3 +15,9 @@
 <ul>
     <li> Write parser for WebSite</li>
 </ul>
+<h3>📌 Task 4:</h3>
+<ul>
+    <li> make API spot</li>
+    <li> launch parser, save data to DB</li>
+    <li> get data from DB</li>
+</ul>
