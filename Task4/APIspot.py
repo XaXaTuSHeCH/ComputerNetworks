@@ -1,14 +1,14 @@
-from fastapi import FastAPI, Query, HTTPException
-from pydantic import BaseModel
-from typing import List
-import subprocess
 import logging
+import subprocess
+from typing import List
 
+from fastapi import FastAPI, HTTPException, Query
+from pydantic import BaseModel
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# FastAPI приложение
+
 app = FastAPI()
 
 
@@ -18,17 +18,17 @@ class Flat(BaseModel):
     address: str
     link: str
 
+
 @app.get("/test")
 def test():
     return {"message": "FastAPI работает!"}
+
 
 @app.get("/parse")
 def parse(url: str = Query(..., description="URL для парсинга")):
     try:
         result = subprocess.run(
-            ["python", "Parser.py", url],
-            capture_output=True,
-            text=True
+            ["python", "Parser.py", url], capture_output=True, text=True
         )
 
         if result.returncode != 0:
@@ -46,11 +46,9 @@ def parse(url: str = Query(..., description="URL для парсинга")):
 def get_flats():
     try:
         import mysql.connector
+
         conn = mysql.connector.connect(
-            host="localhost",
-            user="localuser",
-            password="",
-            database="flats_db"
+            host="localhost", user="localuser", password="", database="flats_db"
         )
         cursor = conn.cursor(dictionary=True)
         cursor.execute("SELECT title, price, address, link FROM flats")

@@ -162,7 +162,6 @@ def parse_flats(url):
             except Exception as e:
                 print(f"Ошибка при переходе на следующую страницу: {e}")
 
-        # Сохранение данных в MySQL
         save_to_mysql(data)
 
     except Exception as e:
