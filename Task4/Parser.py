@@ -1,4 +1,5 @@
 import json
+import sys
 import time
 
 import mysql.connector
@@ -171,8 +172,6 @@ def parse_flats(url):
 
 
 if __name__ == "__main__":
-    import sys
-
     if len(sys.argv) > 1:
         parse_flats(sys.argv[1])
     else:

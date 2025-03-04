@@ -2,8 +2,11 @@ import logging
 import subprocess
 from typing import List
 
+import mysql.connector
+import uvicorn
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -45,8 +48,6 @@ def parse(url: str = Query(..., description="URL для парсинга")):
 @app.get("/flats", response_model=List[Flat])
 def get_flats():
     try:
-        import mysql.connector
-
         conn = mysql.connector.connect(
             host="localhost", user="localuser", password="", database="flats_db"
         )
@@ -64,6 +65,4 @@ def get_flats():
 
 
 if __name__ == "__main__":
-    import uvicorn
-
     uvicorn.run(app, host="0.0.0.0", port=8000)
